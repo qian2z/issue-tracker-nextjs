@@ -1,3 +1,4 @@
+import { Skeleton } from "@/app/components";
 import {
   TableBody,
   TableCell,
@@ -6,8 +7,6 @@ import {
   TableRoot,
   TableRow,
 } from "@radix-ui/themes";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 import IssueToolbar from "./IssueToolbar";
 
 const LoadingIssuesPage = () => {
