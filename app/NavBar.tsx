@@ -1,5 +1,15 @@
 "use client";
-import { Box, Container, Flex } from "@radix-ui/themes";
+import {
+  Avatar,
+  Container,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuRoot,
+  DropdownMenuTrigger,
+  Flex,
+  Text,
+} from "@radix-ui/themes";
 import classnames from "classnames";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -15,8 +25,10 @@ const NavBar = () => {
     { label: "Issues", href: "/issues/list" },
   ];
 
+  const margin = status === "authenticated" ? "py-3" : "py-4";
+
   return (
-    <nav className="border-b mb-5 px-5 h-14 py-4">
+    <nav className={`border-b mb-5 px-5 h-14 ${margin}`}>
       <Container>
         <Flex justify="between">
           <Flex gap="3" align="center">
@@ -41,14 +53,32 @@ const NavBar = () => {
               ))}
             </ul>
           </Flex>
-          <Box>
+          <Flex>
             {status === "authenticated" && (
-              <Link href="/api/auth/signout">Sign Out</Link>
+              <DropdownMenuRoot>
+                <DropdownMenuTrigger>
+                  <Avatar
+                    src={session.user!.image!}
+                    fallback="?"
+                    size="2"
+                    radius="full"
+                    className="cursor-pointer"
+                  />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>
+                    <Text size="2">{session.user!.email}</Text>
+                  </DropdownMenuLabel>
+                  <DropdownMenuItem>
+                    <Link href="/api/auth/signout">Sign Out</Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenuRoot>
             )}
             {status === "unauthenticated" && (
               <Link href="/api/auth/signin">Sign In</Link>
             )}
-          </Box>
+          </Flex>
         </Flex>
       </Container>
     </nav>
