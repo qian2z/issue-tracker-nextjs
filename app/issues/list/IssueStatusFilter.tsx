@@ -7,6 +7,7 @@ import {
   SelectRoot,
   SelectTrigger,
 } from "@radix-ui/themes";
+import { useRouter } from "next/navigation";
 
 const statuses: { label: string; value?: Status }[] = [
   { label: "All" },
@@ -16,13 +17,20 @@ const statuses: { label: string; value?: Status }[] = [
 ];
 
 const IssueStatusFilter = () => {
+  const router = useRouter();
+
   return (
-    <SelectRoot>
+    <SelectRoot
+      onValueChange={(status) => {
+        const query = status === "ALL" ? "" : `?status=${status}`;
+        router.push("/issues/list" + query);
+      }}
+    >
       <SelectTrigger placeholder="Filter by Status..." />
       <SelectContent>
         <SelectGroup>
           {statuses.map((status) => (
-            <SelectItem key={status.value} value={status.value || "all"}>
+            <SelectItem key={status.value} value={status.value || "ALL"}>
               {status.label}
             </SelectItem>
           ))}
