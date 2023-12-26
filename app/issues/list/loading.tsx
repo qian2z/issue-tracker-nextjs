@@ -1,5 +1,6 @@
 import { Skeleton } from "@/app/components";
 import {
+  Flex,
   TableBody,
   TableCell,
   TableColumnHeaderCell,
@@ -13,7 +14,7 @@ const LoadingIssuesPage = () => {
   const issues = [1, 2, 3, 4, 5];
 
   return (
-    <div>
+    <Flex direction="column" gap="5">
       <IssueToolbar />
       <TableRoot variant="surface">
         <TableHeader>
@@ -46,7 +47,7 @@ const LoadingIssuesPage = () => {
           ))}
         </TableBody>
       </TableRoot>
-    </div>
+    </Flex>
   );
 };
 
