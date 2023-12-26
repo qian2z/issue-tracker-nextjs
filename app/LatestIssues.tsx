@@ -31,7 +31,11 @@ const LatestIssues = async () => {
             <TableRow key={issue.id}>
               <TableCell>
                 <Flex justify="between" align="center">
-                  <Flex direction="row" align="start" gap="2">
+                  <Flex
+                    direction={{ initial: "column", md: "row" }}
+                    align="start"
+                    gap="2"
+                  >
                     <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
                     <IssueStatusBadge status={issue.status} />
                   </Flex>

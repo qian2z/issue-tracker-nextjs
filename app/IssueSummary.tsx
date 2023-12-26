@@ -20,7 +20,12 @@ const IssueSummary = ({ open, inProgress, closed }: Props) => {
     <Flex gap="4">
       {containers.map((container) => (
         <Card key={container.label}>
-          <Flex direction="row" gap="2" justify="center" align="center">
+          <Flex
+            direction={{ initial: "column", md: "row" }}
+            gap="2"
+            justify="center"
+            align="center"
+          >
             <IssueStatusBadge status={container.status} />
             <Link
               className="text-sm font-medium"
