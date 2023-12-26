@@ -1,4 +1,5 @@
 "use client";
+import { Skeleton } from "@/app/components";
 import {
   Avatar,
   Container,
@@ -19,7 +20,7 @@ import { FaBug } from "react-icons/fa";
 
 const NavBar = () => {
   const { status, data: session } = useSession();
-  const margin = status === "authenticated" ? "py-3" : "py-2";
+  const margin = status === "unauthenticated" ? "py-2" : "py-3";
 
   return (
     <nav className={`border-b mb-5 px-5 h-14 ${margin}`}>
@@ -71,7 +72,7 @@ const AuthStatus = ({
   status: string;
   session: Session | null;
 }) => {
-  if (status === "loading") return null;
+  if (status === "loading") return <Skeleton className="mt-3" width="3rem" />;
 
   if (status === "unauthenticated")
     return (
