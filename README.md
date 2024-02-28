@@ -11,6 +11,7 @@ This web application is an issue tracker developed as part of Mr. Mosh Hamedani'
 - **Prisma and MySQL:** Utilises Prisma as the database ORM with MySQL for data modelling and manipulation.
 - **Zod:** Implements Zod for data schema validation.
 - **Axios:** Incorporates Axios for making HTTP requests.
+- **Google Cloud SQL:** Utilised for hosting the MySQL database.
 - **Vercel Deployment:** Deployed on Vercel for easy and scalable hosting.
 
 ## Acknowledgments
